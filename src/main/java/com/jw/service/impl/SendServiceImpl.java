@@ -14,6 +14,12 @@ public class SendServiceImpl implements SendService {
         return jsonStr;
     }
 
+    /**
+     * 红包发放
+     * @param opid
+     * @param total_amount
+     * @return
+     */
     @Override
     public String getSand(String opid, String total_amount) {
         String mchBillno = System.currentTimeMillis() + "";
