@@ -8,6 +8,8 @@ import org.springframework.cache.CacheManager;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -57,9 +59,8 @@ public class RemoteController {
      */
     @Scheduled(cron = "0 0/10 * * * ? ")
     public void remoKey() {
-        System.out.print("baseCahe缓存删除");
+        System.out.println("baseCahe缓存删除:当前时间："+ new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         cacheManager.getCache("baseCache").clear();
-
     }
 
 }
