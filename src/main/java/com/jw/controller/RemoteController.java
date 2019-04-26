@@ -57,7 +57,7 @@ public class RemoteController {
     /**
      * redis 数据删除
      */
-    @Scheduled(cron = "0 0/10 * * * ? ")
+    @Scheduled(cron = "0 0/10 * * * ?")
     public void remoKey() {
         System.out.println("baseCahe缓存删除:当前时间："+ new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         cacheManager.getCache("baseCache").clear();
