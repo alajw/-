@@ -4,6 +4,8 @@ import com.jw.entity.ConfigEntity;
 import com.jw.repository.ConfigRepository;
 import com.jw.service.ConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

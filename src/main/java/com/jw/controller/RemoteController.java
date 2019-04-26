@@ -4,6 +4,8 @@ import com.jw.entity.ConfigEntity;
 import com.jw.service.ConfigService;
 import com.jw.service.SendService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,6 +16,10 @@ public class RemoteController {
     private SendService sendService;
     @Autowired
     private ConfigService configService;
+    @Autowired
+    private CacheManager cacheManager;
+
+
 
     /**
      * 发送红包
@@ -36,10 +42,25 @@ public class RemoteController {
         return  sendService.getqure(mch_billno);
 
     }
+
+    /**
+     * 数据测试
+     * @return
+     */
      @GetMapping("/index")
     public List<ConfigEntity> getIndex(){
         return configService.getAll();
      }
+
+    /**
+     * redis 数据删除
+     */
+    @Scheduled(cron = "0 0/10 * * * ? ")
+    public void remoKey() {
+        System.out.print("baseCahe缓存删除");
+        cacheManager.getCache("baseCache").clear();
+
+    }
 
 }
 
